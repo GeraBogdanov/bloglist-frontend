@@ -90,7 +90,22 @@ const App = () => {
         setMessage(null)
       }, 5000)
     }
+  }
 
+  const addLike = async (blogObject) => {
+    try {
+      const returnedBlog = await blogService.patch(blogObject)
+
+      setBlogs(blogs.map(blog => blog.id === returnedBlog.id ? returnedBlog : blog))
+    } catch (exception) {
+      setMessage({
+        message: exception.message,
+        type: 'error',
+      })
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    }
   }
 
   const loginForm = () => (
@@ -138,7 +153,7 @@ const App = () => {
           <h2>Create new</h2>
           {blogForm()}
           {blogs.map(blog =>
-              <Blog key={blog.id} blog={blog} />
+            <Blog key={blog.id} blog={blog} changeLike={addLike}/>
           )}
         </div>
       }

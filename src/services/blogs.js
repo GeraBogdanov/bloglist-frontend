@@ -21,5 +21,15 @@ const create = async newObject =>{
   return response.data
 } 
 
+const patch = async blog => {
+  const a = {
+    likes:`${blog.likes}`
+  }
+  const config = {
+    headers: { Authorization: token },
+    
+  }
+  const response = await axios.patch(`${baseUrl}/${blog.id}`,a, config)
+}
 
-export default { getAll, setToken, create}
+export default { getAll, setToken, create, patch}
