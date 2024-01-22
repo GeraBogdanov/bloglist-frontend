@@ -152,7 +152,7 @@ const App = () => {
           <p>{user.name} logged in <button onClick={handleLogout}>logout</button></p>
           <h2>Create new</h2>
           {blogForm()}
-          {blogs.map(blog =>
+          {blogs.sort((a,b) => b.likes - a.likes ).map(blog =>
             <Blog key={blog.id} blog={blog} changeLike={addLike}/>
           )}
         </div>
