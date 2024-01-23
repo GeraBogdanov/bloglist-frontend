@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 const Blog = ({ blog, changeLike, removeBlog, user }) => {
   const [visible, setVisible] = useState(false)
@@ -24,7 +24,7 @@ const Blog = ({ blog, changeLike, removeBlog, user }) => {
 
   const showDelete = blog.user && blog.user.username === user.username ? true :false
 
- 
+
 
   const blogStyle = {
     paddingTop: 10,

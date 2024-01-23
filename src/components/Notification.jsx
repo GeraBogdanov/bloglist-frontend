@@ -3,7 +3,7 @@ const Notification = ({ message }) => {
     return null
   }
 
-  const { message: msg, type: typ } = message;
+  const { message: msg, type: typ } = message
 
   const className = () => {
     if (typ === 'error')

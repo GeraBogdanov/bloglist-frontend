@@ -12,14 +12,14 @@ const getAll = () => {
   return request.then(response => response.data)
 }
 
-const create = async newObject =>{
+const create = async newObject => {
   const config = {
     headers: { Authorization: token },
   }
 
   const response = await axios.post(baseUrl, newObject, config)
   return response.data
-} 
+}
 
 const patch = async blog => {
   const a = {
@@ -27,7 +27,7 @@ const patch = async blog => {
   }
   const config = {
     headers: { Authorization: token },
-    
+
   }
   const response = await axios.patch(`${baseUrl}/${blog.id}`,a, config)
 }
@@ -37,6 +37,6 @@ const remove = async blog => {
     headers: { Authorization: token },
   }
   const response = await axios.delete(`${baseUrl}/${blog.id}`, config)
-} 
+}
 
 export default { getAll, setToken, create, patch, remove }

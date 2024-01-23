@@ -172,7 +172,7 @@ const App = () => {
               key={blog.id}
               blog={blog}
               changeLike={addLike}
-              removeBlog={deleteBlog} 
+              removeBlog={deleteBlog}
               user={user}/>
           )}
         </div>
