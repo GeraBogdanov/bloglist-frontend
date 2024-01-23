@@ -32,4 +32,11 @@ const patch = async blog => {
   const response = await axios.patch(`${baseUrl}/${blog.id}`,a, config)
 }
 
-export default { getAll, setToken, create, patch}
+const remove = async blog => {
+  const config = {
+    headers: { Authorization: token },
+  }
+  const response = await axios.delete(`${baseUrl}/${blog.id}`, config)
+} 
+
+export default { getAll, setToken, create, patch, remove }

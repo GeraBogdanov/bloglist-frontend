@@ -141,6 +141,21 @@ const App = () => {
     </Togglable>
   )
 
+  const deleteBlog = async (blogObject) => {
+    try {
+      const returnedBlog = await blogService.remove(blogObject)
+      setBlogs(blogs.filter(blog => blog.id !== blogObject.id))
+    } catch (exception) {
+      setMessage({
+        message: exception.message,
+        type: 'error',
+      })
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    }
+  }
+
   return (
     <div>
       <Notification message={message} />
@@ -152,13 +167,16 @@ const App = () => {
           <p>{user.name} logged in <button onClick={handleLogout}>logout</button></p>
           <h2>Create new</h2>
           {blogForm()}
-          {blogs.sort((a,b) => b.likes - a.likes ).map(blog =>
-            <Blog key={blog.id} blog={blog} changeLike={addLike}/>
+          {blogs.sort((a, b) => b.likes - a.likes).map(blog =>
+            <Blog
+              key={blog.id}
+              blog={blog}
+              changeLike={addLike}
+              removeBlog={deleteBlog} 
+              user={user}/>
           )}
         </div>
       }
-
-
     </div>
   )
 }
