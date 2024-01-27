@@ -24,8 +24,6 @@ const Blog = ({ blog, changeLike, removeBlog, user }) => {
 
   const showDelete = blog.user && blog.user.username === user.username ? true :false
 
-
-
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -34,9 +32,9 @@ const Blog = ({ blog, changeLike, removeBlog, user }) => {
     marginBottom: 5
   }
   return (
-    <div style={blogStyle}>
+    <div style={blogStyle} className='blog'>
       {blog.title} {blog.author} <button onClick={toggleVisibility}>{buttonName}</button>
-      <div style={showWhenVisible}>
+      <div style={showWhenVisible} className='additionalInfo'>
         {blog.url}<br />
         {blog.likes}<button onClick={addLikes}>like</button><br />
         {blog.user && blog.user.username}<br />
