@@ -1,11 +1,10 @@
 import React from 'react'
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { render, screen, cleanup } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Blog from './Blog'
 
 describe('<Blog />', () => {
-  let container
   const blog = {
     id: '65a452d7e04b41263b79c3a8',
     title: 'My Title',
@@ -19,11 +18,10 @@ describe('<Blog />', () => {
   const user = {
     username:'kkkk'
   }
-  beforeEach(() => {
-    container =  render(<Blog blog={blog} user={user} />).container
-  })
 
   test('render content', () => {
+    const container =  render(<Blog blog={blog} user={user} />).container
+
     const element = screen.getByText('My Title German')
     expect(element).toBeDefined()
 
@@ -38,6 +36,7 @@ describe('<Blog />', () => {
   })
 
   test('reder content after clicking button', async () => {
+    const container =  render(<Blog blog={blog} user={user} />).container
     const element = screen.getByText('My Title German')
     expect(element).toBeDefined()
     const div = container.querySelector('.additionalInfo')
@@ -49,5 +48,21 @@ describe('<Blog />', () => {
 
     expect(div).toHaveTextContent('5')
     expect(div).toHaveTextContent('http://example.com')
+  })
+
+  test('click button twice add to likes', async () => {
+
+    const mockHandler = jest.fn()
+    const container =  render(<Blog blog={blog} user={user} changeLike={mockHandler}/>).container
+
+    const div = container.querySelector('.additionalInfo')
+    const user1 = userEvent.setup()
+    const button = screen.findAllByAltText('view')
+    await user1.click(button[0])
+    expect(div).toHaveTextContent('5')
+    const likeButton = screen.getByText('like')
+    await user1.click(likeButton)
+    await user1.click(likeButton)
+    expect(mockHandler.mock.calls).toHaveLength(2)
   })
 })
