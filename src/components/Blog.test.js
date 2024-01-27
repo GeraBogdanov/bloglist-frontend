@@ -37,17 +37,17 @@ describe('<Blog />', () => {
     expect(urlElement).toBeNull()
   })
 
-//   test('reder content after clicking button', async () => {
-//     const element = screen.getByText('My Title German')
-//     expect(element).toBeDefined()
-//     const div = container.querySelector('.additionalInfo')
-//     expect(div).toHaveStyle('display: none')
+  test('reder content after clicking button', async () => {
+    const element = screen.getByText('My Title German')
+    expect(element).toBeDefined()
+    const div = container.querySelector('.additionalInfo')
+    expect(div).toHaveStyle('display: none')
 
-//     const user = userEvent.setup()
-//     const button = screen.getByText('view')
-//     await user.click(button)
+    const user = userEvent.setup()
+    const button = screen.getByText('view')
+    await user.click(button)
 
-//     expect(div).toHaveTextContent('5')
-//     expect(div).toHaveTextContent('http://example.com')
-//   })
-// })
+    expect(div).toHaveTextContent('5')
+    expect(div).toHaveTextContent('http://example.com')
+  })
+})
