@@ -30,6 +30,7 @@ const patch = async blog => {
 
   }
   const response = await axios.patch(`${baseUrl}/${blog.id}`,a, config)
+  return response.data
 }
 
 const remove = async blog => {
